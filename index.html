@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pharmacy Facts Slider</title>
+  <title>Drug Interactions & Facts Slider</title>
   <style>
     :root{
-      --card-bg:#dbeef6;
+      --card-bg:#f1f5f9;
       --page-bg:#f8fafc;
       --text:#0f172a;
       --muted:#334155;
+      --accent:#0ea5e9;
       --radius:20px;
       --shadow:0 10px 20px rgba(0,0,0,.08);
     }
@@ -24,58 +25,176 @@
     }
     .testimonial-wrap{width:min(900px,92vw);padding:24px 12px 12px;margin:auto}
     .slide{display:grid;gap:18px;background:var(--card-bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
-    blockquote{margin:0;font-size:clamp(18px,2.2vw,26px);line-height:1.45;font-weight:500}
+    blockquote{margin:0;font-size:clamp(18px,2.2vw,26px);line-height:1.45;font-weight:600}
     figcaption{display:flex;gap:8px;align-items:center;font-size:clamp(14px,1.8vw,16px);color:var(--muted)}
-    .name{font-weight:600;color:var(--text)}
+    .name{font-weight:700;color:var(--text)}
     .dots{display:flex;justify-content:center;gap:10px;padding:18px 0 4px}
-    .dots button{width:10px;height:10px;border-radius:999px;border:0;outline:0;background:#bcd3df;cursor:pointer;transition:transform .2s}
-    .dots button[aria-selected="true"]{background:#3a889e;transform:scale(1.15)}
+    .dots button{
+      width:10px;height:10px;border-radius:999px;border:0;outline:0;background:#cbd5e1;cursor:pointer;transition:transform .2s, background .2s
+    }
+    .dots button[aria-selected="true"]{background:var(--accent);transform:scale(1.15)}
   </style>
 </head>
 <body>
-  <div class="testimonial-wrap" role="region" aria-label="Pharmacy Facts">
+  <div class="testimonial-wrap" role="region" aria-label="Drug Interactions & Facts">
     <div id="slides">
-      <figure class="slide" data-quote="Bioavailability (F) is the fraction of an administered dose that reaches systemic circulation unchanged." data-name="Pharmaceutics Fact" data-role="Rowland & Tozer"></figure>
-      <figure class="slide" data-quote="Loading Dose = (Target Concentration × Volume of Distribution) ÷ Bioavailability." data-name="Clinical Pharmacokinetics" data-role="Brahmankar & Jaiswal"></figure>
-      <figure class="slide" data-quote="Half-life (t½) = 0.693 × Volume of Distribution ÷ Clearance." data-name="Pharmacokinetics Formula" data-role="Milo Gibaldi"></figure>
-      <figure class="slide" data-quote="First-pass metabolism significantly reduces the bioavailability of drugs like propranolol and nitroglycerin." data-name="Drug Metabolism" data-role="Swarbrick"></figure>
-      <figure class="slide" data-quote="Therapeutic Drug Monitoring is essential for narrow therapeutic index drugs such as digoxin, lithium, and phenytoin." data-name="Clinical Pharmacy" data-role="Goodman & Gilman"></figure>
+      <!-- Each figure acts as a data source; JS will render from data-* attributes -->
+      <figure class="slide"
+        data-quote="Macrolides (clarithromycin, erythromycin) inhibit CYP3A4 → ↑ statin levels (simvastatin, lovastatin) → risk of myopathy/rhabdomyolysis."
+        data-name="CYP3A4 Inhibition"
+        data-role="Interaction: Macrolides + Statins">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Warfarin has numerous interactions (amiodarone, TMP‑SMX, metronidazole, fluconazole) that elevate INR and bleeding risk."
+        data-name="Warfarin Modulators"
+        data-role="Interaction: Warfarin + Inhibitors">
+      </figure>
+
+      <figure class="slide"
+        data-quote="SSRIs/SNRIs + MAOIs, linezolid, or triptans can precipitate serotonin syndrome: agitation, hyperreflexia, clonus, hyperthermia."
+        data-name="Serotonergic Load"
+        data-role="Interaction: Serotonin Syndrome">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Grapefruit juice inhibits intestinal CYP3A4 and P‑gp → ↑ exposure of drugs like felodipine, simvastatin, and tacrolimus."
+        data-name="Food–Drug"
+        data-role="Interaction: Grapefruit Effects">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Fluoroquinolones and tetracyclines chelate with divalent cations (Ca, Mg, Fe) → reduced antibiotic absorption; separate by 2–4 hours."
+        data-name="Chelation"
+        data-role="Interaction: Antibiotics + Cations">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Rifampin is a potent inducer (CYP3A4, 2C9, P‑gp) → ↓ efficacy of OCPs, many antivirals, calcineurin inhibitors, and warfarin."
+        data-name="Enzyme Induction"
+        data-role="Interaction: Rifampin Broad Induction">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Amiodarone inhibits multiple CYPs and P‑gp → ↑ digoxin, warfarin, and certain DOACs; often requires dose reduction and close monitoring."
+        data-name="Multi‑Pathway Inhibition"
+        data-role="Interaction: Amiodarone">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Combined use of ACE inhibitors/ARBs, potassium‑sparing diuretics, and potassium supplements can cause hyperkalemia—monitor K+ closely."
+        data-name="Additive Effects"
+        data-role="Interaction: Hyperkalemia Risk">
+      </figure>
+
+      <figure class="slide"
+        data-quote="NSAIDs can reduce antihypertensive effect of ACE inhibitors/ARBs and increase nephrotoxicity risk with diuretics (triple whammy)."
+        data-name="Renal Hemodynamics"
+        data-role="Interaction: ACEi/ARB + Diuretic + NSAID">
+      </figure>
+
+      <figure class="slide"
+        data-quote="PPI‑induced ↑ gastric pH may reduce absorption of itraconazole, atazanavir, and erlotinib; consider spacing or alternatives."
+        data-name="pH‑Dependent Absorption"
+        data-role="Interaction: PPIs + pH‑Sensitive Drugs">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Valproate + lamotrigine increases lamotrigine levels and risk of serious rash; start lamotrigine low and titrate slowly."
+        data-name="Antiepileptic Combo"
+        data-role="Interaction: Valproate + Lamotrigine">
+      </figure>
+
+      <figure class="slide"
+        data-quote="QT prolongation risk accumulates: macrolides, fluoroquinolones, azoles, antipsychotics, methadone—avoid combinations in high‑risk patients."
+        data-name="Additive QT"
+        data-role="Interaction: Torsades Risk">
+      </figure>
+
+      <figure class="slide"
+        data-quote="MAOIs with tyramine‑rich foods (aged cheeses, cured meats) can trigger hypertensive crisis; strict dietary restriction is required."
+        data-name="MAOI Food"
+        data-role="Interaction: Tyramine Reaction">
+      </figure>
+
+      <figure class="slide"
+        data-quote="St. John’s wort induces CYP3A4 and P‑gp → ↓ exposure to OCPs, cyclosporine, tacrolimus, and certain antivirals/anticoagulants."
+        data-name="Herb–Drug"
+        data-role="Interaction: St. John’s Wort">
+      </figure>
+
+      <figure class="slide"
+        data-quote="Alcohol with metronidazole or disulfiram can cause a disulfiram‑like reaction: flushing, tachycardia, nausea, and vomiting."
+        data-name="Alcohol Reactions"
+        data-role="Interaction: Disulfiram‑like">
+      </figure>
     </div>
+
     <div class="dots" id="dots" role="tablist" aria-label="Slider pagination"></div>
   </div>
+
   <script>
     (function(){
       const slidesEl = document.getElementById('slides');
       const dotsEl = document.getElementById('dots');
       const slides = Array.from(slidesEl.querySelectorAll('.slide'));
       let index = 0, timer = null;
+
       function render(i){
         const s = slides[i];
         slidesEl.innerHTML = '';
         const fig = document.createElement('figure');
         fig.className = 'slide';
+
         const bq = document.createElement('blockquote');
         bq.textContent = '“' + s.dataset.quote + '”';
+
         const cap = document.createElement('figcaption');
         const name = document.createElement('div');
         name.className = 'name';
         name.textContent = s.dataset.name;
+
         const role = document.createElement('div');
         role.textContent = ' · ' + s.dataset.role;
-        cap.appendChild(name); cap.appendChild(role);
-        fig.appendChild(bq); fig.appendChild(cap);
+
+        cap.appendChild(name);
+        cap.appendChild(role);
+        fig.appendChild(bq);
+        fig.appendChild(cap);
         slidesEl.appendChild(fig);
+
         Array.from(dotsEl.children).forEach((d,di)=>d.setAttribute('aria-selected', di===i ? 'true':'false'));
       }
+
       function goTo(i){ index = (i + slides.length) % slides.length; render(index); reset(); }
       function next(){ goTo(index + 1); }
       function reset(){ if(timer) clearInterval(timer); timer = setInterval(next, 5000); }
-      slides.forEach((_,i)=>{ const b=document.createElement('button'); b.setAttribute('aria-label','Go to slide '+(i+1)); b.setAttribute('role','tab'); b.addEventListener('click',()=>goTo(i)); dotsEl.appendChild(b); });
-      let startX=null; slidesEl.addEventListener('pointerdown',e=>{startX=e.clientX});
-      slidesEl.addEventListener('pointerup',e=>{ if(startX===null) return; const dx=e.clientX-startX; if(Math.abs(dx)>40){ dx<0?next():goTo(index-1) } startX=null });
+
+      // Build dots
+      slides.forEach((_,i)=>{
+        const b = document.createElement('button');
+        b.setAttribute('aria-label','Go to slide '+(i+1));
+        b.setAttribute('role','tab');
+        b.addEventListener('click',()=>goTo(i));
+        dotsEl.appendChild(b);
+      });
+
+      // Swipe
+      let startX=null;
+      slidesEl.addEventListener('pointerdown',e=>{ startX=e.clientX; });
+      slidesEl.addEventListener('pointerup',e=>{
+        if(startX===null) return;
+        const dx=e.clientX-startX;
+        if(Math.abs(dx)>40){ dx<0?next():goTo(index-1); }
+        startX=null;
+      });
+
+      // Pause on hover
       slidesEl.addEventListener('mouseenter',()=>clearInterval(timer));
       slidesEl.addEventListener('mouseleave',reset);
-      render(index); reset();
+
+      render(index);
+      reset();
     })();
   </script>
 </body>
