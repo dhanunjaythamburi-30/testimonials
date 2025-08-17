@@ -6,11 +6,12 @@
   <title>Drug Interactions & Facts Slider</title>
   <style>
     :root{
-      --card-bg:#f1f5f9;
-      --page-bg:#f8fafc;
+      /* Updated to light red theme */
+      --card-bg:#fde2e4;   /* light red card */
+      --page-bg:#fff5f5;   /* very light rose page */
       --text:#0f172a;
       --muted:#334155;
-      --accent:#0ea5e9;
+      --accent:#e11d48;    /* rose-600 for active dot */
       --radius:20px;
       --shadow:0 10px 20px rgba(0,0,0,.08);
     }
@@ -30,7 +31,8 @@
     .name{font-weight:700;color:var(--text)}
     .dots{display:flex;justify-content:center;gap:10px;padding:18px 0 4px}
     .dots button{
-      width:10px;height:10px;border-radius:999px;border:0;outline:0;background:#cbd5e1;cursor:pointer;transition:transform .2s, background .2s
+      width:10px;height:10px;border-radius:999px;border:0;outline:0;background:#fecdd3; /* light rose for inactive dots */
+      cursor:pointer;transition:transform .2s, background .2s
     }
     .dots button[aria-selected="true"]{background:var(--accent);transform:scale(1.15)}
   </style>
@@ -38,7 +40,6 @@
 <body>
   <div class="testimonial-wrap" role="region" aria-label="Drug Interactions & Facts">
     <div id="slides">
-      <!-- Each figure acts as a data source; JS will render from data-* attributes -->
       <figure class="slide"
         data-quote="Macrolides (clarithromycin, erythromycin) inhibit CYP3A4 → ↑ statin levels (simvastatin, lovastatin) → risk of myopathy/rhabdomyolysis."
         data-name="CYP3A4 Inhibition"
@@ -100,7 +101,7 @@
       </figure>
 
       <figure class="slide"
-        data-quote="Valproate + lamotrigine increases lamotrigine levels and risk of serious rash; start lamotrigine low and titrate slowly."
+        data-quote="Valproate + lamotrigine increases lamotrigine levels and risk of serious rash; start low and titrate slowly."
         data-name="Antiepileptic Combo"
         data-role="Interaction: Valproate + Lamotrigine">
       </figure>
